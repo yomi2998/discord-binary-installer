@@ -1,0 +1,2 @@
+sudo rm -rf /opt/Discord /usr/share/applications/discord.desktop
+echo "Complete."

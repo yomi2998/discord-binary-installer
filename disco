@@ -1,0 +1,8 @@
+mkdir ~/disco-updater
+cd ~/disco-updater
+aria2c -x16 'https://discord.com/api/download?platform=linux&format=tar.gz' -o discord.tar.gz
+tar -zxf discord.tar.gz
+sudo mv Discord /opt
+echo -e "[Desktop Entry]\nName=Discord\nStartupWMClass=discord\nComment=All-in-one voice and text chat for gamers that's free, secure, and works on both your desktop and phone.\nGenericName=Internet Messenger\nExec=/opt/Discord/Discord\nIcon=/opt/Discord/discord.png\nType=Application\nCategories=Network;InstantMessaging;\nPath=/opt/Discord" | sudo tee /usr/share/applications/discord.desktop
+cd ..; rm -rf disco-updater
+echo "Complete."
