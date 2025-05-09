@@ -1,8 +1,49 @@
-mkdir ~/disco-updater
-cd ~/disco-updater
-aria2c -x16 'https://discord.com/api/download?platform=linux&format=tar.gz' -o discord.tar.gz
-tar -zxf discord.tar.gz
-sudo cp -r Discord /opt
-echo -e "[Desktop Entry]\nName=Discord\nStartupWMClass=discord\nComment=All-in-one voice and text chat for gamers that's free, secure, and works on both your desktop and phone.\nGenericName=Internet Messenger\nExec=/opt/Discord/Discord\nIcon=/opt/Discord/discord.png\nType=Application\nCategories=Network;InstantMessaging;\nPath=/opt/Discord" | sudo tee /usr/share/applications/discord.desktop
-cd ..; rm -rf disco-updater
-echo "Complete."
+#!/usr/bin/env bash
+
+# detect flag
+CANARY=false
+for arg; do
+  [[ $arg == "--canary" ]] && CANARY=true
+done
+
+if $CANARY; then
+  URL="https://discord.com/api/download/canary?platform=linux&format=tar.gz"
+  DEST="DiscordCanary"
+  DESKTOP="discord-canary.desktop"
+  NAME="Discord Canary"
+  WM="discord-canary"
+  EXEC="DiscordCanary"
+else
+  URL="https://discord.com/api/download?platform=linux&format=tar.gz"
+  DEST="Discord"
+  DESKTOP="discord.desktop"
+  NAME="Discord"
+  WM="discord"
+  EXEC="Discord"
+fi
+
+WD=~/disco-updater
+mkdir -p "$WD" && cd "$WD"
+aria2c -x16 "$URL" -o dl.tar.gz
+tar -zxf dl.tar.gz
+
+# copy the extracted folder (named $DEST) into /opt
+sudo rm -rf /opt/"$DEST"
+sudo cp -r "$DEST" /opt/"$DEST"
+
+# write desktop file
+sudo tee /usr/share/applications/"$DESKTOP" > /dev/null <<EOF
+[Desktop Entry]
+Name=$NAME
+StartupWMClass=$WM
+Comment=Free voice and text chat
+GenericName=Internet Messenger
+Exec=/opt/$DEST/$EXEC
+Icon=/opt/$DEST/discord.png
+Type=Application
+Categories=Network;InstantMessaging;
+Path=/opt/$DEST
+EOF
+
+cd ~ && rm -rf "$WD"
+echo "Installed $NAME"

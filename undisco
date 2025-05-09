@@ -1,2 +1,18 @@
-sudo rm -rf /opt/Discord /usr/share/applications/discord.desktop
-echo "Complete."
+#!/usr/bin/env bash
+
+# detect flag
+CANARY=false
+for arg; do
+  [[ $arg == "--canary" ]] && CANARY=true
+done
+
+if $CANARY; then
+  DIR="DiscordCanary"
+  DESKTOP="discord-canary.desktop"
+else
+  DIR="Discord"
+  DESKTOP="discord.desktop"
+fi
+
+sudo rm -rf /opt/"$DIR" /usr/share/applications/"$DESKTOP"
+echo "Removed $DIR"
