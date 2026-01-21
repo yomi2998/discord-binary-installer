@@ -42,7 +42,6 @@ Exec=/opt/$DEST/$EXEC
 Icon=/opt/$DEST/discord.png
 Type=Application
 Categories=Network;InstantMessaging;
-Path=/opt/$DEST
 EOF
 
 cd ~ && rm -rf "$WD"
