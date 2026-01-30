@@ -39,8 +39,8 @@ Name=$NAME
 StartupWMClass=$WM
 Comment=Free voice and text chat
 GenericName=Internet Messenger
-Exec="$HOME"/.discord-binaries/$DEST/$EXEC
-Icon="$HOME"/.discord-binaries/$DEST/discord.png
+Exec=$HOME/.discord-binaries/$DEST/$EXEC
+Icon=$HOME/.discord-binaries/$DEST/discord.png
 Type=Application
 Categories=Network;InstantMessaging;
 EOF
