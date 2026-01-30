@@ -27,19 +27,20 @@ mkdir -p "$WD" && cd "$WD"
 aria2c -x16 "$URL" -o dl.tar.gz
 tar -zxf dl.tar.gz
 
-# copy the extracted folder (named $DEST) into /opt
-sudo rm -rf /opt/"$DEST"
-sudo cp -r "$DEST" /opt/"$DEST"
+# copy the extracted folder (named $DEST) into "$HOME"/.discord-binaries
+mkdir -p "$HOME"/.discord-binaries
+rm -rf "$HOME"/.discord-binaries/"$DEST"
+cp -r "$DEST" "$HOME"/.discord-binaries/"$DEST"
 
 # write desktop file
-sudo tee /usr/share/applications/"$DESKTOP" > /dev/null <<EOF
+tee "$HOME"/.local/share/applications/"$DESKTOP" > /dev/null <<EOF
 [Desktop Entry]
 Name=$NAME
 StartupWMClass=$WM
 Comment=Free voice and text chat
 GenericName=Internet Messenger
-Exec=/opt/$DEST/$EXEC
-Icon=/opt/$DEST/discord.png
+Exec="$HOME"/.discord-binaries/$DEST/$EXEC
+Icon="$HOME"/.discord-binaries/$DEST/discord.png
 Type=Application
 Categories=Network;InstantMessaging;
 EOF

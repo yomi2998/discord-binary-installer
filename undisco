@@ -14,5 +14,5 @@ else
   DESKTOP="discord.desktop"
 fi
 
-sudo rm -rf /opt/"$DIR" /usr/share/applications/"$DESKTOP"
+rm -rf "$HOME"/.discord-binaries/"$DIR" "$HOME"/.local/share/applications/"$DESKTOP"
 echo "Removed $DIR"

@@ -1,3 +1,3 @@
-sudo mv disco /usr/local/bin/
-sudo mv undisco /usr/local/bin/
+mv disco "$HOME"/.local/bin/
+mv undisco "$HOME"/.local/bin/
 echo "Complete."
