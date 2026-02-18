@@ -5,6 +5,7 @@ mv undisco "$HOME"/.local/bin/
 if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
         echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME"/.bashrc
         echo 'export PATH="$HOME/.local/bin:$PATH"' >> "$HOME"/.zshrc
+
         echo "Added ~/.local/bin to PATH in .bashrc and .zshrc"
 else
         echo "~/.local/bin is already in PATH"
