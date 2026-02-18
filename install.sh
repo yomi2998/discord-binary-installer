@@ -9,3 +9,4 @@ if [[ ":$PATH:" != *":$HOME/.local/bin:"* ]]; then
 else
         echo "~/.local/bin is already in PATH"
 echo "Complete."
+fi
