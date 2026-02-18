@@ -33,6 +33,7 @@ rm -rf "$HOME"/.discord-binaries/"$DEST"
 cp -r "$DEST" "$HOME"/.discord-binaries/"$DEST"
 
 # write desktop file
+mkdir -p "$HOME"/.local/share/applications
 tee "$HOME"/.local/share/applications/"$DESKTOP" > /dev/null <<EOF
 [Desktop Entry]
 Name=$NAME
